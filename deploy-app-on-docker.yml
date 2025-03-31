@@ -1,0 +1,11 @@
+---
+- hosts: node_ansible
+
+  tasks:
+  - name: create docker image
+    command: docker build -t devsecops-pipeline-training:latest .
+    args:
+     chdir: /opt/docker
+
+  - name: create tag to push image onto dockerhub
+    command: docker tag devsecops-pipeline-training:latest sorydiallo89/regapp:latest
