@@ -1,2 +1,3 @@
 # devsecops-pipeline-script-training
-![image](https://github.com/user-attachments/assets/149fdd62-62a4-4301-9fee-e00da596a71d)
+![image](https://github.com/user-attachments/assets/10a7b90b-ff9d-4d34-a176-58c85b9fb8a7)
+
