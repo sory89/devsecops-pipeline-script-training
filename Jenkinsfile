@@ -46,30 +46,7 @@ pipeline {
                 }	
             }
 
-        }
-	    
-        stage('Push the change file to Git') {
-            steps {
-                script {
-                    sh """
-                       git config --global user.name "sory89"
-                       git config --global user.email "sordiallo@gmail.com"
-                       git add .
-                       git commit -m "update the file deployment"
-
-                    """
-                    withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
-                    sh "git push https://github.com/sory89/devsecops-pipeline-script-training.git main"
-                    }
-                }
-            }
-        }
-
-        stage('Push the change file to Git') {
-            sshagent(['ansible_connect']) {
-		   sh 'ssh -o StrictHostKeyChecking=no vagrant@192.168.100.203 ls'
-                }
-            }
-        }	
+         }
+     }	
    }
 }
