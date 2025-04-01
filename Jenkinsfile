@@ -5,7 +5,7 @@ pipeline {
         maven 'Maven3'
     }
     environment {
-	    APP_NAME = "gitops-pipeline-argocd-kubernetes"
+	    APP_NAME = "devsecops-pipeline-script-training"
             RELEASE = "1.0.0"
             DOCKER_USER = "sorydiallo89"
             DOCKER_PASS = 'dockerhub'
