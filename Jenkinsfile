@@ -5,25 +5,26 @@ pipeline {
         maven 'Maven3'
     }
     environment {
-	    APP_NAME = "devsecops-pipeline-script-training"
+	    APP_NAME = "gitops-pipeline-argocd-kubernetes"
             RELEASE = "1.0.0"
             DOCKER_USER = "sorydiallo89"
             DOCKER_PASS = 'dockerhub'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    }	
+	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+    }
     stages{
         stage("Cleanup Workspace"){
                 steps {
                 cleanWs()
                 }
         }
-	    
+
         stage("Checkout from SCM"){
                 steps {
-                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/sory89/devsecops-pipeline-script-training.git'
+                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/Ashfaque-9x/register-app'
                 }
-        }      
+        }
 
         stage("Build Application"){
             steps {
@@ -36,7 +37,8 @@ pipeline {
            steps {
                  sh "mvn test"
            }
-       } 
+       }
+
        stage("SonarQube Analysis"){
            steps {
 	           script {
@@ -53,7 +55,8 @@ pipeline {
                     waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
                 }	
             }
-       }
+
+        }
 
         stage("Build & Push Docker Image") {
             steps {
@@ -69,6 +72,6 @@ pipeline {
                 }
             }
 
-       }	    
+       }
     }
-}	
+}
