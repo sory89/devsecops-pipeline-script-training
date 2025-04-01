@@ -10,7 +10,7 @@ pipeline {
                 cleanWs()
                 }
         }
-      
+
         stage("Checkout from SCM"){
                 steps {
                     git branch: 'main', credentialsId: 'github', url: 'https://github.com/sory89/devsecops-pipeline-script-training.git'
